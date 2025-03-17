@@ -9,14 +9,15 @@ const data = [
 
 const PerformanceChart = () => {
   return (
-    <div className="bg-gray-900 p-4 rounded-md mt-4">
-      <h2 className="text-white text-lg mb-2">Performance Summary</h2>
+
+    <div className="bg-[#111] p-4 rounded-lg">
+      <h1 className="text-white text-sm mb-2">Performance Summary</h1>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
-          <XAxis dataKey="date" stroke="#fff" />
-          <YAxis stroke="#fff" />
+          <XAxis dataKey="date" stroke="#8884d8" />
+          <YAxis stroke="#8884d8" />
           <Tooltip />
-          <Line type="monotone" dataKey="value" stroke="#10b981" strokeWidth={2} />
+          <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={2} />
         </LineChart>
       </ResponsiveContainer>
     </div>

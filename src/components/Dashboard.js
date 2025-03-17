@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMutualFunds } from "../redux/mutualFundSlice";
 import PerformanceChart from "./PerformanceChart";
 import SectorAllocation from "./SectorAllocation";
+import InvestmentCard from "./InvestmentCard";
+import Tabs from "./Tabs";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -19,16 +21,28 @@ const Dashboard = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Mutual Fund Dashboard</h1>
 
-      {funds.map((fund) => (
-        <div key={fund.id} className="bg-gray-800 text-white p-4 mb-4 rounded-md">
-          <h2 className="text-xl font-semibold">{fund.name}</h2>
-          <p>Investment: ₹{fund.amount_invested}</p>
-          <p>Returns: {fund.returns_percent}%</p>
-        </div>
-      ))}
-
-      <PerformanceChart />
-      <SectorAllocation />
+      {/* Investment Cards Section */}
+      {/* <div className="flex gap-4 p-6 bg-black min-h-screen"> */}
+      <div className="flex flex-wrap gap-4 p-4 bg-black">
+        {funds.map((fund) => (
+          <InvestmentCard
+            key={fund.id}
+            title={fund.name}
+            value={`₹${fund.amount_invested}`}
+            change={fund.returns_percent}
+            // description="Returns"
+            isPositive={fund.returns_percent >= 0} // Determines positive or negative change
+          />
+        ))}
+      </div>
+        {/* Tabs Section */}
+      {/* <div className="p-6 bg-black min-h-screen"> */}
+      <div className="p-4 bg-black">
+        <Tabs />
+      </div>
+        
+      {/* <PerformanceChart />
+      <SectorAllocation /> */}
     </div>
   );
 };
